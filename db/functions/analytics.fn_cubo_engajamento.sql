@@ -52,3 +52,38 @@ AS (
     AND (p_data_inicio IS NULL OR data_classificacao >= p_data_inicio)
     AND (p_data_fim IS NULL OR data_classificacao <= p_data_fim)
 );
+
+
+CREATE OR REPLACE TABLE FUNCTION analytics.fn_consultar_cubo_engajamento(
+    p_cliente STRING,
+    p_nivel_agregacao STRING,
+    p_environment_id INT64,
+    p_course_id INT64,
+    p_space_id INT64,
+    p_subject_id INT64,
+    p_lecture_id INT64,
+    p_data_inicio DATE,
+    p_data_fim DATE
+)
+AS (
+  SELECT
+      -- Colunas da tabela cubo_engajamento
+      *
+  FROM
+    `analytics.cubo_engajamento`
+  WHERE
+    -- Filtros fixos que sempre se aplicam
+    cliente = p_cliente
+    AND NivelAgregacao = p_nivel_agregacao
+
+    -- Filtros de escopo hierárquico opcionais
+    AND (p_environment_id IS NULL OR environment_id = p_environment_id)
+    AND (p_course_id IS NULL OR course_id = p_course_id)
+    AND (p_space_id IS NULL OR space_id = p_space_id)
+    AND (p_subject_id IS NULL OR subject_id = p_subject_id)
+    AND (p_lecture_id IS NULL OR lecture_id = p_lecture_id)
+
+    -- Filtros de período opcionais (baseados na data_classificacao)
+    AND (p_data_inicio IS NULL OR data_classificacao >= p_data_inicio)
+    AND (p_data_fim IS NULL OR data_classificacao <= p_data_fim)
+);
