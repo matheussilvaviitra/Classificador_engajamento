@@ -23,6 +23,18 @@ CREATE OR REPLACE TABLE FUNCTION analytics.fn_consultar_cubo_engajamento(
     p_data_fim DATE
 )
 AS (
+CREATE OR REPLACE TABLE FUNCTION analytics.fn_cubo_engajamento(
+    p_cliente STRING,
+    p_nivel_agregacao STRING,
+    p_environment_id INT64,
+    p_course_id INT64,
+    p_space_id INT64,
+    p_subject_id INT64,
+    p_lecture_id INT64,
+    p_data_inicio DATE,
+    p_data_fim DATE
+)
+AS (
   SELECT
       -- Colunas da tabela cubo_engajamento
       *
@@ -41,8 +53,8 @@ AS (
     AND (p_lecture_id IS NULL OR lecture_id = p_lecture_id)
 
     -- Filtros de período opcionais (baseados na data_classificacao)
-    AND (p_data_inicio IS NULL OR data_classificacao >= p_data_inicio)
-    AND (p_data_fim IS NULL OR data_classificacao <= p_data_fim)
+    AND (p_data_inicio IS NULL OR data_inicio >= p_data_inicio)
+    AND (p_data_fim IS NULL OR data_fim <= p_data_fim)
 );
 ```
 

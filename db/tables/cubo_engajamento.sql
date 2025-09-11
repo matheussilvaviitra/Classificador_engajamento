@@ -20,10 +20,12 @@ CREATE OR REPLACE TABLE `viitra-redu.analytics.cubo_engajamento`
   postRepliesAmount INT64,
   helpRequestsAmount INT64,
   helpRequestRepliesAmount INT64,
-  performance_rate FLOAT64,
+  assigned_exercises INT64,
+  submitted_exercises INT64,
+  conclusion_percent FLOAT64,
   categoria_engajamento STRING,
   data_classificacao DATE
 )
 OPTIONS(
-  description="Tabela com dados de engajamento dos estudantes, classificados por algoritmo de clusterização."
+  description=""Tabela com dados de engajamento dos estudantes, classificados por algoritmo de clusterização.""
 );
