@@ -1,4 +1,4 @@
-Com certeza! Analisando os três arquivos SQL, podemos ver uma arquitetura de dados muito bem estruturada e modular dentro do BigQuery. Vou explicar a lógica de cada função, como elas se conectam e destacar os pontos técnicos mais interessantes.
+
 
 ### Visão Geral: Uma Arquitetura de Pipeline em Três Camadas
 
