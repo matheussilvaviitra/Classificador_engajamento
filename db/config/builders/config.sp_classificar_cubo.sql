@@ -24,11 +24,31 @@ BEGIN
             helpRequestsAmount, helpRequestRepliesAmount, assigned_exercises, submitted_exercises,
             conclusion_percent, categoria_engajamento, data_classificacao
         )
+        -- ===================== ALTERAÇÃO PRINCIPAL ABAIXO =====================
+        -- Em vez de 'source_data.*', listamos explicitamente cada coluna
+        -- e renomeamos as colunas de data para corresponder à lista do INSERT.
         SELECT
-            source_data.* EXCEPT(centroid_id),
+            source_data.cliente, source_data.user_id, source_data.environment_id, source_data.course_id, 
+            source_data.space_id, source_data.subject_id, source_data.lecture_id,
+            
+            -- Também precisamos adicionar a coluna NivelAgregacao que faltava no SELECT
+            '%s' AS NivelAgregacao,
+
+            source_data.user_name, source_data.environment_name, source_data.course_name, source_data.space_name,
+            source_data.subject_name, source_data.lecture_name,
+
+            -- Renomeando as colunas de data para corresponder ao INSERT
+            source_data.period_start_date AS data_inicio,
+            source_data.period_end_date AS data_fim,
+            
+            source_data.postsAmount, source_data.postRepliesAmount, source_data.helpRequestsAmount,
+            source_data.helpRequestRepliesAmount, source_data.assigned_exercises, source_data.submitted_exercises,
+            
+            -- As colunas calculadas permanecem as mesmas
             SAFE_DIVIDE(source_data.submitted_exercises, source_data.assigned_exercises) AS conclusion_percent,
             labels.categoria_engajamento,
-            CURRENT_DATE() AS data_classificacao
+            CURRENT_DATE() AS data_classificacao -- Irá inserir a data de hoje, 15 de Setembro de 2025
+        -- ===================== FIM DA ALTERAÇÃO =====================
         FROM (
             SELECT *
             FROM ML.PREDICT(
@@ -46,11 +66,13 @@ BEGIN
             AND labels.nivel_agregacao = ?;
         """,
         tabela_destino_final,
+        niveis_a_processar[ORDINAL(i+1)].nivel, -- Adicionado para a coluna NivelAgregacao
         niveis_a_processar[ORDINAL(i+1)].modelo_id,
         niveis_a_processar[ORDINAL(i+1)].tabela_fonte,
         tabela_labels
         )
         USING data_inicio, data_fim, niveis_a_processar[ORDINAL(i+1)].nivel, niveis_a_processar[ORDINAL(i+1)].nivel;
+        
         SET i = i + 1;
     END WHILE;
 END;

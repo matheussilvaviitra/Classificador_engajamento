@@ -1,1 +1,15 @@
+# Ambiente Virtual Python
+/env/
+__pycache__/
+*.pyc
+
+# Arquivos de Credenciais e Configuração Local
 keyfile.json
+.env
+
+# Arquivos de Sistema Operacional
+.DS_Store
+Thumbs.db
+
+# Arquivos gerados pelo VSCode
+.vscode/

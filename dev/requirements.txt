@@ -4,5 +4,4 @@ matplotlib
 seaborn
 numpy
 scikit-learn
-scikit-learn-extra
 db-dtypes

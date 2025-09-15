@@ -10,4 +10,6 @@ INSERT INTO config.pipeline_parametros (parametro, valor_date, valor_string, des
 ('data_inicio_processamento', DATE('2020-01-01'), NULL, 'Data de início para buscar dados para CLASSIFICAÇÃO.'),
 ('data_fim_processamento', DATE('2021-12-31'), NULL, 'Data de fim para buscar dados para CLASSIFICAÇÃO.'),
 ('tabela_destino_classificacao', NULL, 'viitra-redu.analytics.cubo_engajamento', 'Tabela final que armazena o cubo.'),
-('tabela_mapeamento_labels', NULL, 'viitra-redu.analytics.mapeamento_labels_engajamento', 'Tabela que armazena os labels gerados para cada cluster.');
+('tabela_mapeamento_labels', NULL, 'viitra-redu.analytics.mapeamento_labels_engajamento', 'Tabela que armazena os labels gerados para cada cluster.'),
+-- Adiciona o novo parâmetro para controlar o tipo de agregação de data
+('tipo_agregacao_data', NULL, 'MONTH', 'Define o período de agregação para a função de engajamento (ex: MONTH, QUARTER, YEAR)');
