@@ -8,6 +8,7 @@ CREATE OR REPLACE TABLE `viitra-redu.analytics.cubo_engajamento`
   subject_id INT64,
   lecture_id INT64,
   NivelAgregacao STRING,
+  TipoAgregacaoData STRING, -- << NOVA COLUNA ADICIONADA
   user_name STRING,
   environment_name STRING,
   course_name STRING,
@@ -27,5 +28,5 @@ CREATE OR REPLACE TABLE `viitra-redu.analytics.cubo_engajamento`
   data_classificacao DATE
 )
 OPTIONS(
-  description=""Tabela com dados de engajamento dos estudantes, classificados por algoritmo de clusterização.""
+  description="Tabela com dados de engajamento dos estudantes, classificados por algoritmo de clusterização. Inclui o tipo de agregação de data (ex: MONTH, WEEK)."
 );

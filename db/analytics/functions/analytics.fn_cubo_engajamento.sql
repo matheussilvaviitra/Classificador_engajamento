@@ -1,6 +1,7 @@
 CREATE OR REPLACE TABLE FUNCTION analytics.fn_cubo_engajamento(
     p_cliente STRING,
     p_nivel_agregacao STRING,
+    p_tipo_agregacao_data STRING, -- <-- Parâmetro ajustado para 'p' minúsculo
     p_environment_id INT64,
     p_course_id INT64,
     p_space_id INT64,
@@ -19,6 +20,7 @@ AS (
     ,subject_id
     ,lecture_id
     ,NivelAgregacao
+    ,TipoAgregacaoData
     ,user_name
     ,environment_name
     ,course_name
@@ -42,6 +44,7 @@ AS (
     -- Filtros fixos que sempre se aplicam
     cliente = p_cliente
     AND NivelAgregacao = p_nivel_agregacao
+    AND TipoAgregacaoData = p_tipo_agregacao_data -- <-- Variável ajustada aqui também
 
     -- Filtros de escopo hierárquico opcionais
     AND (p_environment_id IS NULL OR environment_id = p_environment_id)
@@ -50,7 +53,7 @@ AS (
     AND (p_subject_id IS NULL OR subject_id = p_subject_id)
     AND (p_lecture_id IS NULL OR lecture_id = p_lecture_id)
 
-    -- Filtros de período opcionais (baseados na data_classificacao)
+    -- Filtros de período opcionais
     AND (p_data_inicio IS NULL OR data_inicio >= p_data_inicio)
     AND (p_data_fim IS NULL OR data_fim <= p_data_fim)
 );

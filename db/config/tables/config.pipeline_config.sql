@@ -1,14 +1,25 @@
-CREATE OR REPLACE TABLE config.pipeline_configuracao (
-    nivel_agregacao STRING OPTIONS(description="Nível de agregação, ex: ENV, CRS, SPA"),
-    modelo_id STRING OPTIONS(description="Nome completo do modelo a ser gerado/usado"),
-    tabela_fonte STRING OPTIONS(description="Função ou tabela que serve de fonte de dados"),
-    ativo BOOL OPTIONS(description="Flag para incluir este nível na execução do pipeline")
+-- Recria a tabela de configuração para incluir o tipo de agregação de data
+CREATE OR REPLACE TABLE config.pipeline_config (
+    nivel_agregacao STRING NOT NULL,
+    tipo_agregacao_data STRING NOT NULL,
+    modelo_id STRING NOT NULL,
+    tabela_fonte STRING NOT NULL,
+    ativo BOOL
 );
 
--- Inserindo os dados de configuração
-INSERT INTO config.pipeline_configuracao VALUES
-('ENV', 'analytics.modelo_engajamento_ENV', 'analytics.fn_engajamento', TRUE),
-('CRS', 'analytics.modelo_engajamento_CRS', 'analytics.fn_engajamento', TRUE),
-('SPA', 'analytics.modelo_engajamento_SPA', 'analytics.fn_engajamento', TRUE),
-('SUB', 'analytics.modelo_engajamento_SUB', 'analytics.fn_engajamento', TRUE),
-('LEC', 'analytics.modelo_engajamento_LEC', 'analytics.fn_engajamento', TRUE);
+-- Populando com as combinações para WEEK e MONTH
+INSERT INTO config.pipeline_config (nivel_agregacao, tipo_agregacao_data, modelo_id, tabela_fonte, ativo)
+VALUES
+    -- Agregações Semanais (WEEK)
+    ('ENV', 'WEEK', 'analytics.modelo_engajamento_ENV_WEEK', 'analytics.fn_engajamento', TRUE),
+    ('CRS', 'WEEK', 'analytics.modelo_engajamento_CRS_WEEK', 'analytics.fn_engajamento', TRUE),
+    ('SPA', 'WEEK', 'analytics.modelo_engajamento_SPA_WEEK', 'analytics.fn_engajamento', TRUE),
+    ('SUB', 'WEEK', 'analytics.modelo_engajamento_SUB_WEEK', 'analytics.fn_engajamento', TRUE),
+    ('LEC', 'WEEK', 'analytics.modelo_engajamento_LEC_WEEK', 'analytics.fn_engajamento', TRUE),
+    
+    -- Agregações Mensais (MONTH)
+    ('ENV', 'MONTH', 'analytics.modelo_engajamento_ENV_MONTH', 'analytics.fn_engajamento', TRUE),
+    ('CRS', 'MONTH', 'analytics.modelo_engajamento_CRS_MONTH', 'analytics.fn_engajamento', TRUE),
+    ('SPA', 'MONTH', 'analytics.modelo_engajamento_SPA_MONTH', 'analytics.fn_engajamento', TRUE),
+    ('SUB', 'MONTH', 'analytics.modelo_engajamento_SUB_MONTH', 'analytics.fn_engajamento', TRUE),
+    ('LEC', 'MONTH', 'analytics.modelo_engajamento_LEC_MONTH', 'analytics.fn_engajamento', TRUE);
