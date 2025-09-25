@@ -33,7 +33,7 @@ Se o `analytics` define os dados, o schema `config` define **como o pipeline ope
 * #### `tables/`
     Contém os scripts DDL para as tabelas que **controlam o pipeline**, permitindo que ele seja flexível sem a necessidade de alterar o código.
     * **`pipeline_config.sql`**: Define os níveis de agregação (ENV, CRS, SPA, etc.) a serem processados e se estão ativos ou não.
-    * **`pipeline_parametros.sql`**: Armazena parâmetros globais como datas de início/fim e o tipo de agregação temporal (`MONTH`, `QUARTER`).
+    * **`pipeline_parametros.sql`**: Armazena parâmetros globais como datas de início/fim e o tipo de agregação temporal (`MONTH`, `WEEK`).
     * **`pipeline_labels_ordenados.sql`**: Permite a customização dos nomes das categorias de engajamento, tornando a regra de negócio editável.
 
 * #### `builders/`
