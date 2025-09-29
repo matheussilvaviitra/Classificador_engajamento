@@ -18,7 +18,7 @@ Estas duas funções são os "construtores" da base de dados. Elas compartilham 
 
 Ambas as funções são construídas sobre os mesmos pilares:
 
-* **Hierarquia do Sistema:** As consultas constroem um universo de dados que respeita a hierarquia da plataforma: `Ambiente (ENV) -> Curso (CRS) -> Turma (SPA) -> Disciplina (SUB) -> Aula (LEC)`. Elas fazem isso através de `JOIN`s sucessivos nas tabelas `replicas.environments`, `courses`, `spaces`, `subjects` e `lectures`.
+* **Hierarquia do Sistema:** As consultas constroem um universo de dados que respeita a hierarquia da plataforma: `Ambiente (ENV) -> Curso (CRS) -> Disciplina (SPA) -> Módulo (SUB) -> Aula/Mídia (LEC)`. Elas fazem isso através de `JOIN`s sucessivos nas tabelas `replicas.environments`, `courses`, `spaces`, `subjects` e `lectures`.
 * **Agregação de Nível (`p_group_agg`):** O parâmetro `p_group_agg` permite que a função retorne dados já agregados no nível hierárquico desejado (ex: 'SUB' para disciplina, 'CRS' para curso). Isso é feito de forma extremamente eficiente usando **`GROUP BY GROUPING SETS`**, uma técnica avançada de SQL que calcula todas as agregações necessárias em uma única passagem pelos dados, evitando múltiplas consultas.
 * **Agregação de Tempo (`p_time_agg`):** O parâmetro `p_time_agg` controla a granularidade temporal dos dados (WEEK, MONTH, QUARTER, etc.). O ponto mais interessante aqui é a implementação do **"Time Scaffold" (Andaime de Tempo)**.
 

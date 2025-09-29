@@ -29,18 +29,21 @@ CLASSIFICADOR/
 │   │       ├── analytics.mapeamento_labels_engajamento.sql
 │   │       └── analytics.cubo_engajamento.sql
 │   │
-│   └── config/
-│       ├── builders/
-│       │   ├── config.sp_classificar_cubo.sql
-│       │   ├── config.sp_gerar_labels.sql
-│       │   └── config.sp_treinar_modelos.sql
-│       ├── functions/
-│       │   ├── config.sp_executar_treinamento.sql
-│       │   └── consulta_main.sql
-│       └── tables/
-│           ├── config.pipeline_config.sql
-│           ├── config.pipeline_labels_ordenados.sql
-│           └── config.pipeline_parametros.sql
+│   ├── config/
+│   │   ├── builders/
+│   │   │   ├── config.sp_classificar_cubo.sql
+│   │   │   ├── config.sp_gerar_labels.sql
+│   │   │   └── config.sp_treinar_modelos.sql
+│   │   ├── functions/
+│   │   │   ├── config.sp_executar_treinamento.sql
+│   │   │   └── consulta_main.sql
+│   │   └── tables/
+│   │       ├── config.pipeline_config.sql
+│   │       ├── config.pipeline_labels_ordenados.sql
+│   │       └── config.pipeline_parametros.sql
+│   │
+│   └── Ref/
+│       └── (scripts sql para cálculo de variáveis)
 │
 ├── dev/
 │   └── notebooks/
@@ -54,7 +57,7 @@ CLASSIFICADOR/
 
 ### Diretório `db/`
 
-É o coração do projeto, contendo todos os scripts SQL que definem a arquitetura no BigQuery. Ele é dividido em dois schemas principais: `analytics` e `config`.
+É o coração do projeto, contendo todos os scripts SQL que definem a arquitetura no BigQuery. Ele é dividido em três schemas principais: `analytics`, `config` e `Ref`.
 
 #### `db/analytics/`
 
@@ -71,6 +74,10 @@ Segue a mesma lógica de subdiretórios, mas com o objetivo de **automatizar e p
   * `builders/`: Contém os Stored Procedures (`sp_*.sql`) que encapsulam toda a lógica do pipeline, como treinar os modelos, gerar os labels e classificar os usuários.
   * `functions/`: Contém procedimentos "mestres" (`sp_executar_treinamento.sql`) que orquestram a chamada de outros procedimentos menores, facilitando a execução manual ou agendada.
   * `tables/`: Contém os scripts DDL para as tabelas de configuração que controlam o comportamento do pipeline (ex: `pipeline_config.sql`, `pipeline_parametros.sql`).
+
+#### `db/Ref/`
+
+Este diretório contém os scripts SQL de **referência e cálculo de métricas**. Seu objetivo é abrigar as consultas que devem ser executadas diretamente na base de dados do Redu para calcular e extrair as variáveis selecionadas, como níveis de interações e o uso de exercícios por cada ambiente. Estes scripts servem como base para a engenharia de features e podem ser usados tanto para a exploração de dados quanto para a criação das tabelas que alimentarão o cubo de engajamento.
 
 ### Diretório `dev/`
 
