@@ -1,3 +1,4 @@
+Com certeza\! Adicionei uma nova seção "Documentação Detalhada" logo no início para dar destaque ao link, como solicitado.
 
 -----
 
@@ -6,6 +7,11 @@
 Este repositório contém todos os scripts SQL e a estrutura necessária para implementar um pipeline de Machine Learning no Google BigQuery. O objetivo principal é classificar o engajamento de usuários com base em suas interações na plataforma, utilizando um modelo de clusterização (K-Means).
 
 O projeto é desenhado para ser modular, parametrizável e automatizado, separando claramente as estruturas de dados das lógicas de execução.
+
+## Documentação Detalhada
+
+Para uma visão aprofundada da arquitetura, decisões de modelagem e próximos passos, acesse o documento completo do projeto:
+[Documentação Completa do Projeto](https://docs.google.com/document/d/1lEBznqD3zt0p_o2Ipo7MNdCMtChKnpl4t7Jo0jrFm6Y/edit?usp=sharing)
 
 ## Tecnologias Principais
 
