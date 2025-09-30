@@ -1,4 +1,3 @@
-Com certeza\! Adicionei uma nova seção "Documentação Detalhada" logo no início para dar destaque ao link, como solicitado.
 
 -----
 
@@ -10,8 +9,8 @@ O projeto é desenhado para ser modular, parametrizável e automatizado, separan
 
 ## Documentação Detalhada
 
-Para uma visão aprofundada da arquitetura, decisões de modelagem e próximos passos, acesse o documento completo do projeto:
-[Documentação Completa do Projeto](https://docs.google.com/document/d/1lEBznqD3zt0p_o2Ipo7MNdCMtChKnpl4t7Jo0jrFm6Y/edit?usp=sharing)
+  * **Documento Principal do Projeto:** Para uma visão aprofundada da arquitetura, decisões de modelagem e próximos passos, [acesse o documento completo aqui](https://docs.google.com/document/d/1lEBznqD3zt0p_o2Ipo7MNdCMtChKnpl4t7Jo0jrFm6Y/edit?usp=sharing).
+  * **Mapeamento de Variáveis:** Para consultar o dicionário de dados e o mapeamento detalhado das variáveis extraídas do banco de dados, [acesse a planilha aqui](https://docs.google.com/spreadsheets/d/1Q3zIgWWz87xLTueht2-sxMp7jcfzdIPldnhY4q7-B6c/edit?usp=sharing).
 
 ## Tecnologias Principais
 
