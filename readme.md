@@ -49,6 +49,10 @@ CLASSIFICADOR/
 │   └── notebooks/
 │       └── BigQueryML.ipynb
 │
+├── DW/
+│   ├── EER_DW_Proposto.png
+│   └── Proximos_Passos.md
+│
 ├── env/
 ├── keyfile.json
 ├── requirements.txt
@@ -82,6 +86,10 @@ Este diretório contém os scripts SQL de **referência e cálculo de métricas*
 ### Diretório `dev/`
 
 Este diretório serve como o **ambiente de desenvolvimento e prototipagem** do projeto. É aqui que os estudos, exploração de dados, engenharia de features e testes iniciais de modelos são realizados, geralmente em formato de notebooks (`.ipynb`). Toda a lógica validada neste ambiente é, subsequentemente, transformada nas consultas e procedimentos SQL robustos que residem no diretório `db/`.
+
+### Diretório `DW/`
+
+Este diretório contém a documentação e artefatos relacionados à arquitetura do Data Warehouse. Nele é possível encontrar um **esquema EER (Entidade-Relacionamento Estendido) proposto** para a modelagem dos dados, além de um documento com **sugestões e ideias para os próximos passos** e a evolução do projeto de dados.
 
 ### Outros Arquivos
 
